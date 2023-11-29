@@ -1,0 +1,15 @@
+header  {
+    background-image:url("../assets/header-img.jpg");
+    height: 960px;
+}
+
+.header_title {
+    display: flex;
+width: 207px;
+height: 25.261px;
+padding-right: 0px;
+justify-content: center;
+align-items: flex-end;
+gap: 4.599px;
+flex-shrink: 0;
+}
