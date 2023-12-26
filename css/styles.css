@@ -1,15 +1,410 @@
-header  {
-    background-image:url("../assets/header-img.jpg");
-    height: 960px;
+/* Box sizing */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
 }
 
-.header_title {
+/* Remove default margins */
+* {
+    margin: 0;
+}
+
+/* Normalize font sizes */
+body {
+    font-family: sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+/* Remove default paddings */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ol,
+ul {
+    padding: 0;
+}
+
+/* Normalize list styles */
+ol,
+ul {
+    list-style: none;
+}
+
+/* Remove default link styles */
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* Normalize form elements */
+input,
+select,
+textarea,
+button {
+    font: inherit;
+}
+
+/* Normalize images */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Remove built-in focus styles */
+button,
+input,
+select,
+textarea {
+    outline: none;
+}
+
+body {
+	max-width: 1440px;
+	margin: 0 auto;
+}
+/* Section 1 : Banner */
+.banner-box {
+	position: relative;
+}
+
+.banner {
+	width: 100%;
+	height: 650px;
+	object-fit: cover;
+}
+
+.logo {
+	position: absolute;
+	top: 70px;
+	left: 70px;
+	width: 180px;
+	height: 25px;
+}
+
+.inside-banner {
+	position: absolute;
+	text-align: center;
+	top: 45%;
+	left: 50%;
+	width: 70%;
+	transform: translate(-50%, -50%);
+}
+
+/* -- Text in banner */
+h1 {
+	color: #ffd15b;
+    text-align: center;
+    font-family: Anton, sans-serif;
+    font-size: 44px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+/* -- Search */
+.search-bar {
+	height: 60px;
+    position: relative;
+}
+
+
+.search-input {
+	width: 90%;
+    height: 72px;
+    z-index: 2;
+}
+
+.search-loop {
+	position: absolute;
+	right: 0;
+	margin: 10px;
+    z-index: 3;
+    
+}
+form .btn {
+    width: 51px;
+    height: 52px;
+    border: none !important;
+
+}
+    
+
+
+form .btn:hover {
+    background-color: #ffd15b!important;
+}
+
+form .btn:hover i {
+    color: black!important;
+}
+
+main {
+	background-color: #f5f5f5;
+}
+
+#recipes-container {
     display: flex;
-width: 207px;
-height: 25.261px;
-padding-right: 0px;
-justify-content: center;
-align-items: flex-end;
-gap: 4.599px;
-flex-shrink: 0;
+    flex-wrap: wrap;
+	padding-left: 40px;
+	padding-right: 40px;
+	justify-content: space-between ;
+}
+
+.recipe-card {
+	width: 380px;
+	height: 730px;
+	background: #ffffff;
+	box-shadow: 0px 4px 34px 30px rgba(0, 0, 0, 0.04);
+	border-radius: 21px;
+	position: relative;
+	margin: 25px;
+	display: grid;
+	grid-template-rows: auto 1fr auto;
+}
+
+.recipeImage {
+	height: 253px;
+	width: 380px;
+	object-fit: cover;
+	border-radius: 21px 21px 0 0;
+}
+
+.recipeInfo {
+	width: 100%;
+	padding: 25px;
+
+}
+
+article h1 {
+	font-family: Anton,sans-serif;
+	font-size: 18px;
+	font-weight: 400;
+	line-height: 27px;
+	letter-spacing: 0em;
+	text-align: left;
+	color: #000;
+	/* /* padding-top: 21px;  */
+	padding-bottom: 29px;
+}
+
+article h2 {
+	font-family: Manrope,sans-serif;
+	text-transform: uppercase;
+	font-size: 12px;
+	font-weight: 700;
+	line-height: 16px;
+	letter-spacing: 0.09em;
+	text-align: left;
+	color: #7A7A7A;
+}
+
+.recipeDescription {
+	width: 330px;
+	font: 14px "Manrope", sans-serif;
+	line-height: 19px;
+	color: #1b1b1b;
+	margin-bottom: 32px;
+	height: 80px;
+	overflow: hidden;
+}
+
+.ingredientName {
+	font: 500 14px "Manrope",sans-serif;
+	color: #1b1b1b;
+	margin-bottom: 2px;
+}
+
+.ingredientQuantity {
+	font: 500 14px "Manrope",sans-serif;
+	color: #7A7A7A;
+}
+
+.recipeIngredients {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-gap: 10px;
+	padding: 0;
+}
+
+.filter_tools {
+	display: flex;
+    padding: 40px;
+}
+
+.dropdowns {
+	display: flex;
+	column-gap: clamp(15px, 4.5vw + 5px, 65px);
+}
+
+.dropdown1,
+.dropdown2,
+.dropdown3 {
+    width: 195px;
+    flex-shrink: 0;
+    border-radius: 11px;
+    background: #FFF;
+    z-index: 10;
+    overflow: hidden;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    height: 56px;
+    overflow-y: hidden;
+    transition: height 0.1s linear;
+    position: relative;
+}
+
+.dropdown1.open,
+.dropdown2.open,
+.dropdown3.open {
+    height: 315px;
+    overflow-y: auto;
+    z-index: 10;
+    background: #FFF;
+    position: relative;
+}
+
+#dropdownArrow1,
+#dropdownArrow2,
+#dropdownArrow3 {
+    transition: transform 0.3s ease;
+}
+
+.rotate180 {
+    transform: rotate(180deg);
+}
+
+.dropdown1::-webkit-scrollbar,
+.dropdown2::-webkit-scrollbar,
+.dropdown3::-webkit-scrollbar {
+    display: none;
+}
+
+.dd1-visiblepart,
+.dd2-visiblepart,
+.dd3-visiblepart {
+    display: flex;
+    justify-content: space-between;
+    padding: 17px 16px;
+    align-items: center;
+    gap: 63px;
+    border-radius: 11px;
+    background: #FFF;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.dd1-visiblepart h1,
+.dd2-visiblepart h1,
+.dd3-visiblepart h1 {
+    color: #1B1B1B;
+    font-family: "Manrope", sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    background: #FFF;
+}
+
+.glass-icon {
+    width: 13.5px;
+    height: 14px;
+    transform: translateX(15px);
+}
+
+.dd1-inputcontainer,
+.dd2-inputcontainer,
+.dd3-inputcontainer {
+    position: relative;
+    width: 163px;
+    height: 36px;
+    border-radius: 2px;
+    border: 1px solid #C6C6C6;
+    margin-top: 10px;
+    margin-left: 16px;
+    margin-bottom: 11px;
+    background: #FFF;
+}
+
+.dd1-inputcontainer input[type="text"],
+.dd2-inputcontainer input[type="text"],
+.dd3-inputcontainer input[type="text"] {
+    border: none;
+    outline: none;
+    width: 120px;
+    height: 34px;
+    color: #7A7A7A;
+    font-family: "Manrope", sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    padding-left: 8px;
+    background: #FFF;
+    MA
+}
+
+.dd1-list,
+.dd2-list,
+.dd3-list {
+    display: flex;
+    width: 163px;
+    flex-direction: column;
+    justify-content: flex-end;
+    color: #1B1B1B;
+    font-family: "Manrope", sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    z-index: 10;
+    background: #FFF;
+    row-gap: 13px;
+}
+
+.dd1-list p,
+.dd2-list p,
+.dd3-list p {
+    height: 19px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    z-index: 10;
+    width: 195px;
+    padding-left: 16px;
+    cursor: pointer;
+    position: relative;
+}
+
+.dd1-list p:not(.selected):hover,
+.dd2-list p:not(.selected):hover,
+.dd3-list p:not(.selected):hover {
+    overflow: visible;
+}
+
+.dd1-list p:not(.selected)::before,
+.dd2-list p:not(.selected)::before,
+.dd3-list p:not(.selected)::before {
+    content: ""; 
+    position: absolute;
+    top: -10px; 
+    bottom: -10px; 
+    left: 0;
+    right: 0;
+    background: #FFD15B;
+    z-index: -1; 
+    opacity: 0; 
+    transition: opacity 0.1s linear; 
+}
+
+.dd1-list p:not(.selected):hover::before,
+.dd2-list p:not(.selected):hover::before,
+.dd3-list p:not(.selected):hover::before {
+    opacity: 1; /* Make the pseudo-element visible on hover */
 }

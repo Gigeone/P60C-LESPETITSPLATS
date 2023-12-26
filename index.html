@@ -1,25 +1,223 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/styles.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Anton&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./css/styles.css" />
+    <script
+      src="https://kit.fontawesome.com/2ca4518e40.js"
+      crossorigin="anonymous"
+    ></script>
     <title>Les Petis Plats</title>
-</head>
-<body>
-    <header>
-        <!-- <img src="./assets/header-img.jpg" alt="header-img"> -->
-        <div class="header_title">
-            <img src="./assets/Logo.png" alt="logo">
-            <img src="./assets/Group 3.svg" alt="">
-        </div>
+  </head>
+  <body>
+    <header class="banner-box">
+      <img src="./assets/header-img.jpg" class="banner" alt="Plat cuisiné" />
+      <a href="./index.html">
+        <img
+          src="./assets/Logo.png"
+          class="logo"
+          alt="Logo de Les Petits Plats"
+      /></a>
+      <div class="inside-banner">
+        <h1>
+          CHERCHEZ PARMI PLUS DE 1500 RECETTES DU QUOTIDIEN, SIMPLES ET
+          DÉLICIEUSES
+        </h1>
+        <form class="input-group search-bar">
+          <input
+            class="form-control rounded search-input"
+            id="searchInput"
+            type="search"
+            placeholder="Rechercher une recette, un ingrédient... "
+            aria-label="Search"
+            minlength="3"
+          />
+          <div class="search-loop">
+            <button class="btn btn-dark" type="submit">
+              <i class="fa fa-search"></i>
+            </button>
+          </div>
+        </form>
+      </div>
     </header>
     <main>
-
+      <section class="filter_tools">
+        <div class="dropdowns">
+          <div class="dropdown1">
+            <div class="dd1-visiblepart">
+              <h1>Ingrédients</h1>
+              <svg
+                id="dropdownArrow1"
+                xmlns="http://www.w3.org/2000/svg"
+                width="15"
+                height="8"
+                viewBox="0 0 15 8"
+                fill="none"
+              >
+                <path
+                  d="M1 1L7.5 7L14 1"
+                  stroke="#1B1B1B"
+                  stroke-linecap="round"
+                />
+              </svg>
+            </div>
+            <div class="dd1-inputcontainer">
+              <input
+                type="text"
+                class="dd1-input"
+                tabindex="-1"
+                id="dd1-input"
+              />
+              <svg
+                class="glass-icon"
+                xmlns="http://www.w3.org/2000/svg"
+                width="14"
+                height="14"
+                viewBox="0 0 14 14"
+                fill="none"
+              >
+                <circle
+                  cx="5"
+                  cy="5"
+                  r="4.75"
+                  stroke="#7A7A7A"
+                  stroke-width="0.5"
+                />
+                <line
+                  x1="9.17678"
+                  y1="9.32322"
+                  x2="13.6768"
+                  y2="13.8232"
+                  stroke="#7A7A7A"
+                  stroke-width="0.5"
+                />
+              </svg>
+            </div>
+            <div class="dd1-list" id="dd1-list"></div>
+          </div>
+          <div class="dropdown2">
+            <div class="dd2-visiblepart">
+              <h1>Appareils</h1>
+              <svg
+                id="dropdownArrow2"
+                xmlns="http://www.w3.org/2000/svg"
+                width="15"
+                height="8"
+                viewBox="0 0 15 8"
+                fill="none"
+              >
+                <path
+                  d="M1 1L7.5 7L14 1"
+                  stroke="#1B1B1B"
+                  stroke-linecap="round"
+                />
+              </svg>
+            </div>
+            <div class="dd2-inputcontainer">
+              <input
+                type="text"
+                class="dd2-input"
+                tabindex="-1"
+                id="dd2-input"
+              />
+              <svg
+                class="glass-icon"
+                xmlns="http://www.w3.org/2000/svg"
+                width="14"
+                height="14"
+                viewBox="0 0 14 14"
+                fill="none"
+              >
+                <circle
+                  cx="5"
+                  cy="5"
+                  r="4.75"
+                  stroke="#7A7A7A"
+                  stroke-width="0.5"
+                />
+                <line
+                  x1="9.17678"
+                  y1="9.32322"
+                  x2="13.6768"
+                  y2="13.8232"
+                  stroke="#7A7A7A"
+                  stroke-width="0.5"
+                />
+              </svg>
+            </div>
+            <div class="dd2-list" id="dd2-list"></div>
+          </div>
+          <div class="dropdown3">
+            <div class="dd3-visiblepart">
+              <h1>Ustensiles</h1>
+              <svg
+                id="dropdownArrow3"
+                xmlns="http://www.w3.org/2000/svg"
+                width="15"
+                height="8"
+                viewBox="0 0 15 8"
+                fill="none"
+              >
+                <path
+                  d="M1 1L7.5 7L14 1"
+                  stroke="#1B1B1B"
+                  stroke-linecap="round"
+                />
+              </svg>
+            </div>
+            <div class="dd3-inputcontainer">
+              <input
+                type="text"
+                class="dd3-input"
+                tabindex="-1"
+                id="dd3-input"
+              />
+              <svg
+                class="glass-icon"
+                xmlns="http://www.w3.org/2000/svg"
+                width="14"
+                height="14"
+                viewBox="0 0 14 14"
+                fill="none"
+              >
+                <circle
+                  cx="5"
+                  cy="5"
+                  r="4.75"
+                  stroke="#7A7A7A"
+                  stroke-width="0.5"
+                />
+                <line
+                  x1="9.17678"
+                  y1="9.32322"
+                  x2="13.6768"
+                  y2="13.8232"
+                  stroke="#7A7A7A"
+                  stroke-width="0.5"
+                />
+              </svg>
+            </div>
+            <div class="dd3-list" id="dd3-list"></div>
+          </div>
+        </div>
+      </section>
+      <div class="filters-selected" id="selectedContainer"></div>
+      <section id="recipes-container"></section>
     </main>
-    <footer>
-
-    </footer>
-    
-</body>
+    <footer></footer>
+  </body>
+  <script type="module" src="./scripts/recipes.js"></script>
+  <script type="module" src="./scripts/Components/appliancesList.js"></script>
+  <script type="module" src="./scripts/Components/ustensilsList.js"></script>
+  <script type="module" src="./scripts/Components/ingredientsList.js"></script>
+  <script src="./scripts/Components/dropdown.js"></script>
+  <!-- <script src="./scripts/recipesCardConstructor.js"></script> -->
+  <script type="module" src="./scripts/index.js"></script>
 </html>
