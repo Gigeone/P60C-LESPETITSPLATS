@@ -1,8 +1,9 @@
 import { recipes } from "../recipes.js";
+import { selectItem } from "../Logics/selectedFilters.js";
 
 let results = [];
 
-const allUstensils = recipes.reduce((ustensils, recipe) => {
+export const allUstensils = recipes.reduce((ustensils, recipe) => {
   recipe.ustensils.forEach((ustensil) => {
     const lowerCaseUstensil = ustensil.toLowerCase();
     if (!ustensils.includes(lowerCaseUstensil)) {
@@ -12,7 +13,7 @@ const allUstensils = recipes.reduce((ustensils, recipe) => {
   return ustensils;
 }, []);
 
-function getUniqueUstensils(results) {
+export const getUniqueUstensils = (results) => {
   const uniqueUstensils = results.reduce((ustensils, recipe) => {
     recipe.ustensils.forEach((ustensil) => {
       const lowerCaseUstensil = ustensil.toLowerCase();
@@ -23,9 +24,9 @@ function getUniqueUstensils(results) {
     return ustensils;
   }, []);
   return uniqueUstensils;
-}
+};
 
-const dd3ListContainer = document.querySelector(".dd3-list");
+export const dd3ListContainer = document.querySelector(".dd3-list");
 dd3ListContainer.innerHTML = "";
 
 if (selectedContainer.children.length === 0 && results.length === 0) {

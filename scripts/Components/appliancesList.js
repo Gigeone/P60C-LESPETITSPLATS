@@ -1,15 +1,16 @@
 import { recipes } from "../recipes.js";
+import { selectItem } from "../Logics/selectedFilters.js";
 
 let results = [];
 
-const allAppliances = recipes.reduce((appliances, recipe) => {
+export const allAppliances = recipes.reduce((appliances, recipe) => {
   if (!appliances.includes(recipe.appliance.toLowerCase())) {
     appliances.push(recipe.appliance.toLowerCase());
   }
   return appliances;
 }, []);
 
-function getUniqueAppliances(results) {
+export const getUniqueAppliances = (results) => {
   const uniqueAppliances = results.reduce((appliances, recipe) => {
     if (!appliances.includes(recipe.appliance.toLowerCase())) {
       appliances.push(recipe.appliance.toLowerCase());
@@ -17,9 +18,9 @@ function getUniqueAppliances(results) {
     return appliances;
   }, []);
   return uniqueAppliances;
-}
+};
 
-const dd2ListContainer = document.querySelector(".dd2-list");
+export const dd2ListContainer = document.querySelector(".dd2-list");
 dd2ListContainer.innerHTML = "";
 
 if (selectedContainer.children.length === 0 && results.length === 0) {

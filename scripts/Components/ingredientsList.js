@@ -1,8 +1,9 @@
 import { recipes } from "../recipes.js";
+import { selectItem } from "../Logics/selectedFilters.js";
 
 let results = [];
 
-const allIngredients = recipes.reduce((ingredients, recipe) => {
+export const allIngredients = recipes.reduce((ingredients, recipe) => {
   console.log("ok");
   recipe.ingredients.forEach((ingredient) => {
     if (
@@ -19,7 +20,7 @@ const allIngredients = recipes.reduce((ingredients, recipe) => {
   return ingredients;
 }, []);
 
-function getUniqueIngredients(results) {
+export const getUniqueIngredients = (results) => {
   const uniqueIngredients = results.reduce((ingredients, recipe) => {
     recipe.ingredients.forEach((ingredient) => {
       const existingIngredient = ingredients.find(
@@ -32,9 +33,9 @@ function getUniqueIngredients(results) {
     return ingredients;
   }, []);
   return uniqueIngredients;
-}
+};
 
-const dd1ListContainer = document.querySelector(".dd1-list");
+export const dd1ListContainer = document.querySelector(".dd1-list");
 const selectedContainer = document.getElementById("selectedContainer");
 
 dd1ListContainer.innerHTML = "";
@@ -43,9 +44,10 @@ if (selectedContainer.children.length === 0 && results.length === 0) {
   allIngredients.forEach((ingredient) => {
     const pElement = document.createElement("p");
     pElement.textContent = ingredient.ingredient;
-    // pElement.onclick = function () {
-    //   selectItem(this);
-    // };
+    pElement.onclick = function () {
+      console.log("jekd");
+      selectItem(this);
+    };
     dd1ListContainer.appendChild(pElement);
   });
 } else {
@@ -54,6 +56,7 @@ if (selectedContainer.children.length === 0 && results.length === 0) {
     const pElement = document.createElement("p");
     pElement.textContent = ingredient.ingredient;
     pElement.onclick = function () {
+      console.log("c'est ca gamin");
       selectItem(this);
     };
     dd1ListContainer.appendChild(pElement);

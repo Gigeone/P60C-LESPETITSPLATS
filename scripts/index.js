@@ -1,45 +1,156 @@
 import { recipes } from "./recipes.js";
 
-console.log(recipes);
-
-// Créer les 50 cartes
-recipes.forEach((recipe) => {
-  // Créer une carte pour la recette
-  const card = createRecipeCard(recipe);
-  // Ajouter la carte à la page
-  document.getElementById("recipes-container").appendChild(card);
-});
+import { resetPageState } from "./Logics/selectedFilters.js";
 
 // Fonction pour créer une carte de recette
-function createRecipeCard(recipe) {
-  const card = document.createElement("article");
-  card.classList.add("recipe-card");
+export const createRecipeCard = (recipe, index) => {
+  // const card = document.createElement("article");
+  // card.classList.add("recipe-card");
+  // card.id = index + 1;
 
-  card.innerHTML = `
-    
-        <img class="recipeImage" src="./assets/recipeImages/${
-          recipe.image
-        }" alt="${recipe.name}">
-        <div class="recipeInfo">
-          <h1>${recipe.name}</h1>
-          <h2>Recette</h2>
-          <div class="recipeDescription">${recipe.description}</div>
-          <h2>Ingrédients</h2>
-          <div class="recipeIngredients">
-          ${recipe.ingredients
-            .map(
-              (ingredient, i) => `
-            <div class="ingredient${i + 1}">
-              <p class="ingredientName">${ingredient.ingredient}</p>
-              <p class="ingredientQuantity">${
-                ingredient.quantity !== undefined ? ingredient.quantity : "-"
-              } ${ingredient.unit !== undefined ? ingredient.unit : ""}</p>
-            </div>`
-            )
-            .join("")}</div>
-        </div>
+  // card.innerHTML = `
 
-    `;
+  //       <img class="recipeImage" src="./assets/recipeImages/${
+  //         recipe.image
+  //       }" alt="${recipe.name}">
+  //       <div class="recipeInfo">
+  //         <h1>${recipe.name}</h1>
+  //         <h2>Recette</h2>
+  //         <div class="recipeDescription">${recipe.description}</div>
+  //         <h2>Ingrédients</h2>
+  //         <div class="recipeIngredients">
+  //         ${recipe.ingredients
+  //           .map(
+  //             (ingredient, i) => `
+  //           <div class="ingredient${i + 1}">
+  //             <p class="ingredientName">${ingredient.ingredient}</p>
+  //             <p class="ingredientQuantity">${
+  //               ingredient.quantity !== undefined ? ingredient.quantity : "-"
+  //             } ${ingredient.unit !== undefined ? ingredient.unit : ""}</p>
+  //           </div>`
+  //           )
+  //           .join("")}</div>
+  //       </div>
+
+  //   `;
+
+  // return card;
+  const card = document.createElement("div");
+  card.classList.add("recipe-container");
+  card.id = index + 1;
+  const article = document.createElement("article");
+  article.classList.add("recipes-card");
+  const image = document.createElement("img");
+  image.src = `./assets/recipeImages/${recipe.image}`;
+  image.alt = recipe.name;
+  image.classList.add("recipe-image");
+  const recipeTime = document.createElement("div");
+  recipeTime.classList.add("recipe-time");
+  recipeTime.textContent = `${recipe.time}min`;
+  const containerCardText = document.createElement("div");
+  containerCardText.classList.add("container-card-text");
+  const recipeName = document.createElement("h1");
+  recipeName.textContent = recipe.name;
+  const recetteHeading = document.createElement("h2");
+  recetteHeading.textContent = "Recette";
+  const descriptionContainer = document.createElement("div");
+  descriptionContainer.classList.add("description-container");
+  const recipeDescription = document.createElement("div");
+  recipeDescription.classList.add("recipe-description");
+  recipeDescription.textContent = recipe.description;
+  const ingredientsHeading = document.createElement("h2");
+  ingredientsHeading.textContent = "Ingrédients";
+  const recipeIngredients = document.createElement("div");
+  recipeIngredients.classList.add("recipe-ingredients");
+
+  recipe.ingredients.forEach((ingredient, i) => {
+    const ingredientDiv = document.createElement("div");
+    ingredientDiv.classList.add(`ingredient${i + 1}`);
+
+    const ingredientName = document.createElement("p");
+    ingredientName.classList.add("ingredient-name");
+    ingredientName.textContent = ingredient.ingredient;
+
+    const ingredientQuantity = document.createElement("p");
+    ingredientQuantity.classList.add("ingredient-quantity");
+    ingredientQuantity.textContent = `${
+      ingredient.quantity !== undefined ? ingredient.quantity : "-"
+    } ${ingredient.unit !== undefined ? ingredient.unit : ""}`;
+
+    ingredientDiv.appendChild(ingredientName);
+    ingredientDiv.appendChild(ingredientQuantity);
+    recipeIngredients.appendChild(ingredientDiv);
+  });
+
+  descriptionContainer.appendChild(recipeDescription);
+  containerCardText.appendChild(recipeName);
+  containerCardText.appendChild(recetteHeading);
+  containerCardText.appendChild(descriptionContainer);
+  containerCardText.appendChild(ingredientsHeading);
+  containerCardText.appendChild(recipeIngredients);
+  article.appendChild(image);
+  article.appendChild(recipeTime);
+  article.appendChild(containerCardText);
+  card.appendChild(article);
 
   return card;
-}
+};
+
+// Mise à jour du nombre de recettes (compteur)
+export const updateRecipeCount = () => {
+  console.log("updateRecipeCount");
+  const recipeCountElement = document.getElementById("number-recipes");
+  const visibleRecipeCards = document.querySelectorAll(".recipe-container");
+  const numberOfRecipes = visibleRecipeCards.length;
+  console.log(numberOfRecipes);
+  let recipeText;
+
+  if (numberOfRecipes === 0) {
+    recipeText = "Aucune recette";
+  } else {
+    recipeText = numberOfRecipes === 1 ? "recette" : "recettes";
+  }
+  recipeCountElement.textContent =
+    numberOfRecipes === 0 ? recipeText : `${numberOfRecipes} ${recipeText}`;
+};
+
+export const fillRecipesCard = (results) => {
+  const recipesContainer = document.getElementById("recipes-container");
+  recipesContainer.innerHTML = "";
+  if (results.length === 0) {
+    const message = document.createElement("p");
+    message.textContent = `Oups ! Aucune recette ne correspond à votre recherche`;
+    recipesContainer.appendChild(message);
+    updateRecipeCount();
+    setTimeout(() => {
+      resetPageState();
+    }, 2000);
+  } else {
+    results.forEach((recipe, index) => {
+      const card = createRecipeCard(recipe, index);
+      recipesContainer.appendChild(card);
+    });
+    updateRecipeCount();
+  }
+};
+
+document.addEventListener("DOMContentLoaded", () => {
+  console.log("DOMContentLoaded");
+  fillRecipesCard(recipes);
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+  const recipeDescriptions = document.querySelectorAll(".recipe-description");
+  const containerCardTexts = document.querySelectorAll(".container-card-text");
+
+  recipeDescriptions.forEach((recipeDescription, index) => {
+    console.log("yallah");
+    recipeDescription.addEventListener("mouseover", () => {
+      containerCardTexts[index].style.height = `100%`;
+    });
+
+    recipeDescription.addEventListener("mouseout", () => {
+      containerCardTexts[index].style.height = "478px";
+    });
+  });
+});

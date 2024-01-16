@@ -30,21 +30,49 @@
           CHERCHEZ PARMI PLUS DE 1500 RECETTES DU QUOTIDIEN, SIMPLES ET
           DÉLICIEUSES
         </h1>
-        <form class="input-group search-bar">
-          <input
-            class="form-control rounded search-input"
-            id="searchInput"
-            type="search"
-            placeholder="Rechercher une recette, un ingrédient... "
-            aria-label="Search"
-            minlength="3"
-          />
-          <div class="search-loop">
-            <button class="btn btn-dark" type="submit">
-              <i class="fa fa-search"></i>
-            </button>
+        <div class="container-search">
+          <div class="research-field">
+            <input
+              id="searchInput"
+              type="text"
+              placeholder="Rechercher une recette, un ingrédient, ..."
+            />
+            <svg
+              id="search-close"
+              xmlns="http://www.w3.org/2000/svg"
+              width="17"
+              height="17"
+              viewBox="0 0 17 17"
+              fill="none"
+            >
+              <path
+                d="M15 15L8.5 8.5M8.5 8.5L2 2M8.5 8.5L15 2M8.5 8.5L2 15"
+                stroke="#7A7A7A"
+                stroke-width="2.16667"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+            <div class="search-icon">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="28"
+                height="29"
+                viewBox="0 0 28 29"
+                fill="none"
+              >
+                <circle cx="10" cy="10.4219" r="9.5" stroke="white" />
+                <line
+                  x1="18.3536"
+                  y1="19.0683"
+                  x2="27.3536"
+                  y2="28.0683"
+                  stroke="white"
+                />
+              </svg>
+            </div>
           </div>
-        </form>
+        </div>
       </div>
     </header>
     <main>
@@ -207,17 +235,23 @@
             <div class="dd3-list" id="dd3-list"></div>
           </div>
         </div>
+        <div class="number-container">
+          <h1 id="number-recipes"></h1>
+        </div>
       </section>
       <div class="filters-selected" id="selectedContainer"></div>
       <section id="recipes-container"></section>
     </main>
     <footer></footer>
   </body>
+  <script src="./scripts/Globals/constGlobals.js"></script>
   <script type="module" src="./scripts/recipes.js"></script>
+  <script type="module" src="./scripts/Components/header.js"></script>
   <script type="module" src="./scripts/Components/appliancesList.js"></script>
   <script type="module" src="./scripts/Components/ustensilsList.js"></script>
   <script type="module" src="./scripts/Components/ingredientsList.js"></script>
   <script src="./scripts/Components/dropdown.js"></script>
-  <!-- <script src="./scripts/recipesCardConstructor.js"></script> -->
   <script type="module" src="./scripts/index.js"></script>
+  <script type="module" src="scripts/Logics/selectedFilters.js"></script>
+  <script type="module" src="scripts/Logics/mainResearch.js"></script>
 </html>
