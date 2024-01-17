@@ -4,7 +4,6 @@ import { selectItem } from "../Logics/selectedFilters.js";
 let results = [];
 
 export const allIngredients = recipes.reduce((ingredients, recipe) => {
-  console.log("ok");
   recipe.ingredients.forEach((ingredient) => {
     if (
       !ingredients.some(

@@ -4,37 +4,6 @@ import { resetPageState } from "./Logics/selectedFilters.js";
 
 // Fonction pour créer une carte de recette
 export const createRecipeCard = (recipe, index) => {
-  // const card = document.createElement("article");
-  // card.classList.add("recipe-card");
-  // card.id = index + 1;
-
-  // card.innerHTML = `
-
-  //       <img class="recipeImage" src="./assets/recipeImages/${
-  //         recipe.image
-  //       }" alt="${recipe.name}">
-  //       <div class="recipeInfo">
-  //         <h1>${recipe.name}</h1>
-  //         <h2>Recette</h2>
-  //         <div class="recipeDescription">${recipe.description}</div>
-  //         <h2>Ingrédients</h2>
-  //         <div class="recipeIngredients">
-  //         ${recipe.ingredients
-  //           .map(
-  //             (ingredient, i) => `
-  //           <div class="ingredient${i + 1}">
-  //             <p class="ingredientName">${ingredient.ingredient}</p>
-  //             <p class="ingredientQuantity">${
-  //               ingredient.quantity !== undefined ? ingredient.quantity : "-"
-  //             } ${ingredient.unit !== undefined ? ingredient.unit : ""}</p>
-  //           </div>`
-  //           )
-  //           .join("")}</div>
-  //       </div>
-
-  //   `;
-
-  // return card;
   const card = document.createElement("div");
   card.classList.add("recipe-container");
   card.id = index + 1;
@@ -122,9 +91,9 @@ export const fillRecipesCard = (results) => {
     message.textContent = `Oups ! Aucune recette ne correspond à votre recherche`;
     recipesContainer.appendChild(message);
     updateRecipeCount();
-    setTimeout(() => {
-      resetPageState();
-    }, 2000);
+    // setTimeout(() => {
+    //   resetPageState();
+    // }, 2000);
   } else {
     results.forEach((recipe, index) => {
       const card = createRecipeCard(recipe, index);

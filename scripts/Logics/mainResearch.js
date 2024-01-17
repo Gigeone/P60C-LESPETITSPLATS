@@ -15,16 +15,10 @@ import {
 import { selectItem, updateSelectedItemLayout } from "./selectedFilters.js";
 
 const searchInput = document.getElementById("searchInput");
-
 searchInput.addEventListener("input", function () {
   handleSearch();
 });
 
-/**
- * Handles the search functionality.
- *
- * @return {void} No return value.
- */
 export const handleSearch = () => {
   console.log("handleSearch");
   let userInput = searchInput.value.toLowerCase();
@@ -51,7 +45,7 @@ export const handleSearch = () => {
     updateSearchResults(results);
     fillRecipesCard(results);
   } else {
-    resetRecipes();
+    searchByFilters(selectedFilters);
   }
 };
 

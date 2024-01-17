@@ -37,7 +37,7 @@ dd1Input.addEventListener("input", function () {
   });
 });
 
-// // Dropdown 2
+// Dropdown 2
 const dd2Input = document.getElementById("dd2-input");
 
 dd2Input.addEventListener("input", function () {
@@ -52,7 +52,7 @@ dd2Input.addEventListener("input", function () {
   });
 });
 
-// // Dropdown 3
+// Dropdown 3
 const dd3Input = document.getElementById("dd3-input");
 
 dd3Input.addEventListener("input", function () {
