@@ -20,16 +20,12 @@ searchInput.addEventListener("input", function () {
 });
 
 export const handleSearch = () => {
-  console.log("handleSearch");
-  let userInput = searchInput.value.toLowerCase();
-  console.log(userInput);
-  selectedContainer.innerHTML = "";
+  // Utilisation de toLowerCase pour la recherche avec majuscule
+  const userInput = searchInput.value.toLowerCase();
+  // Si moins de 3 caractères
   if (userInput.length >= 3) {
-    let results = [];
-    const recipeContainer = document.getElementById("recipes-container");
-    recipeContainer.innerHTML = "";
-
-    recipes.forEach((recipe) => {
+    selectedFilters = [];
+    results = recipes.filter((recipe) => {
       const titleMatch = recipe.name.toLowerCase().includes(userInput);
       const ingredientsMatch = recipe.ingredients.some((ingredient) =>
         ingredient.ingredient.toLowerCase().includes(userInput)
@@ -37,10 +33,7 @@ export const handleSearch = () => {
       const descriptionMatch = recipe.description
         .toLowerCase()
         .includes(userInput);
-
-      if (titleMatch || ingredientsMatch || descriptionMatch) {
-        results.push(recipe);
-      }
+      return titleMatch || ingredientsMatch || descriptionMatch;
     });
     updateSearchResults(results);
     fillRecipesCard(results);
