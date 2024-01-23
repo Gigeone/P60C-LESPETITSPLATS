@@ -1,6 +1,4 @@
-import { recipes } from "./recipes.js";
-
-import { resetPageState } from "./Logics/selectedFilters.js";
+import { recipes } from "../data/recipes.js";
 
 // Fonction pour créer une carte de recette
 export const createRecipeCard = (recipe, index) => {

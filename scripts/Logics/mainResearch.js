@@ -1,4 +1,5 @@
-import { recipes } from "../recipes.js";
+/* eslint-disable no-undef */
+import { recipes } from "../../data/recipes.js";
 import { fillRecipesCard } from "../index.js";
 import {
   getUniqueIngredients,
@@ -19,13 +20,12 @@ searchInput.addEventListener("input", function () {
   handleSearch();
 });
 
+/* Fonction de recherche avec la méthode filter() */
 export const handleSearch = () => {
-  // Utilisation de toLowerCase pour la recherche avec majuscule
   const userInput = searchInput.value.toLowerCase();
   // Si moins de 3 caractères
   if (userInput.length >= 3) {
-    selectedFilters = [];
-    results = recipes.filter((recipe) => {
+    let results = recipes.filter((recipe) => {
       const titleMatch = recipe.name.toLowerCase().includes(userInput);
       const ingredientsMatch = recipe.ingredients.some((ingredient) =>
         ingredient.ingredient.toLowerCase().includes(userInput)
@@ -37,21 +37,15 @@ export const handleSearch = () => {
     });
     updateSearchResults(results);
     fillRecipesCard(results);
+    searchByFilters(selectedFilters);
   } else {
     searchByFilters(selectedFilters);
   }
 };
 
-/**
- * Searches for recipes based on selected filters.
- *
- * @param {Array} selectedFilters - An array of filters selected by the user.
- * @return {undefined} No return value.
- */
+/* Fonction de recherche avec les "selectedFilters" */
 export const searchByFilters = (selectedFilters) => {
-  console.log("searchByFilters");
   const userInput = searchInput.value.toLowerCase();
-  console.log(results);
   if (userInput.length >= 3) {
     // Recherche par texte
     results = recipes.filter((recipe) => {
@@ -87,24 +81,14 @@ export const searchByFilters = (selectedFilters) => {
   fillRecipesCard(results);
 };
 
-/**
- * Resets the recipes by clearing the recipe container and filling it with new recipes.
- *
- * @param {none} - This function does not take any parameters.
- * @return {none} - This function does not return any value.
- */
-const resetRecipes = () => {
-  console.log("resetRecipes");
-  const recipeContainer = document.getElementById("recipes-container");
-  recipeContainer.innerHTML = "";
-  fillRecipesCard(recipes);
-};
+/* Reset des recettes */
+// const resetRecipes = () => {
+//   const recipeContainer = document.getElementById("recipes-container");
+//   recipeContainer.innerHTML = "";
+//   fillRecipesCard(recipes);
+// };
 
-/**
- * Updates the search results with the given results.
- *
- * @param {array} results - The search results to update with.
- */
+/* Fonction de mise à jour des résultats et des dropdowns en fonction des filtres sélectionnés */
 const updateSearchResults = (results) => {
   console.log("updateSearchResults");
   console.log(results);
@@ -119,7 +103,6 @@ const updateSearchResults = (results) => {
   updateDropdownOptions(3, uniqueUstensils, "ustensil");
 
   const containers = [dd1ListContainer, dd2ListContainer, dd3ListContainer];
-  console.log(selectedFilters);
   selectedFilters.forEach((filter) => {
     console.log("filter", filter);
     const isInIngredients = uniqueIngredients.includes(filter);
@@ -134,13 +117,7 @@ const updateSearchResults = (results) => {
   });
 };
 
-/**
- * Finds a dropdown element by the specified text within the given containers.
- *
- * @param {string} text - The text to search for in the dropdown elements.
- * @param {NodeList} containers - The containers to search within.
- * @return {Element|null} - The found dropdown element, or null if not found.
- */
+/* Fonction de recherche par texte à l'intérieur des dropdowns */
 const findDropdownElementByText = (text, containers) => {
   console.log("findDropdownElementByText");
   for (const container of containers) {
@@ -157,14 +134,7 @@ const findDropdownElementByText = (text, containers) => {
   return null;
 };
 
-/**
- * Updates the dropdown options with new values.
- *
- * @param {number} dropdownNumber - The number of the dropdown to update.
- * @param {Array} options - The new options to display in the dropdown.
- * @param {string} property - The property to use as the display value for each option.
- * @return {void} This function does not return a value.
- */
+/* Fonction de mise à jour du contenu des dropdowns avec les options générées (texte ou objets) */
 export const updateDropdownOptions = (dropdownNumber, options, property) => {
   console.log("updateDropdownOptions");
   const dropdownId = `dd${dropdownNumber}-list`;

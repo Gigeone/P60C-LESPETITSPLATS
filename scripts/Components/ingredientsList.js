@@ -1,8 +1,9 @@
-import { recipes } from "../recipes.js";
+import { recipes } from "../../data/recipes.js";
 import { selectItem } from "../Logics/selectedFilters.js";
 
 let results = [];
 
+// Recherche de départ où l'on sélectionne toutes les recettes
 export const allIngredients = recipes.reduce((ingredients, recipe) => {
   recipe.ingredients.forEach((ingredient) => {
     if (
@@ -19,6 +20,7 @@ export const allIngredients = recipes.reduce((ingredients, recipe) => {
   return ingredients;
 }, []);
 
+// Fonction qui réduit la liste des filtres et ressort un tableau des filtres uniques
 export const getUniqueIngredients = (results) => {
   const uniqueIngredients = results.reduce((ingredients, recipe) => {
     recipe.ingredients.forEach((ingredient) => {

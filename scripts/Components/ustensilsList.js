@@ -1,8 +1,9 @@
-import { recipes } from "../recipes.js";
+import { recipes } from "../../data/recipes.js";
 import { selectItem } from "../Logics/selectedFilters.js";
 
 let results = [];
 
+// Recherche de départ où l'on sélectionne toutes les recettes
 export const allUstensils = recipes.reduce((ustensils, recipe) => {
   recipe.ustensils.forEach((ustensil) => {
     const lowerCaseUstensil = ustensil.toLowerCase();
@@ -13,6 +14,7 @@ export const allUstensils = recipes.reduce((ustensils, recipe) => {
   return ustensils;
 }, []);
 
+// Fonction qui réduit la liste des filtres et ressort un tableau des filtres uniques
 export const getUniqueUstensils = (results) => {
   const uniqueUstensils = results.reduce((ustensils, recipe) => {
     recipe.ustensils.forEach((ustensil) => {

@@ -1,9 +1,6 @@
-import { recipes } from "../recipes.js";
-import {
-  searchByFilters,
-  updateDropdownOptions,
-  handleSearch,
-} from "./mainResearch.js";
+/* eslint-disable no-undef */
+import { recipes } from "../../data/recipes.js";
+import { searchByFilters, updateDropdownOptions } from "./mainResearch.js";
 import {
   dd1ListContainer,
   allIngredients,
@@ -15,14 +12,8 @@ import {
 } from "../Components/appliancesList.js";
 import { fillRecipesCard, updateRecipeCount } from "../index.js";
 
-/**
- * Selects an item and performs the necessary actions based on the selected element.
- *
- * @param {Element} selectedElement - The element that is selected.
- * @return {void} This function does not return a value.
- */
+/* Fonction de gestion de la sélection ou désélection d'éléments en fonction du filtre */
 export const selectItem = (selectedElement) => {
-  console.log("selectItem");
   const filterValue = selectedElement.textContent.toLowerCase();
   if (!selectedFilters.some((filter) => filter.toLowerCase() === filterValue)) {
     selectedFilters.push(filterValue);
@@ -32,22 +23,18 @@ export const selectItem = (selectedElement) => {
       `.selected-item[data-filter="${filterValue}"]`
     );
     if (selectedItemClone) {
+      // Appel de la fonction pour supprimer l'élément sélectionné
       removeSelectedItem(selectedElement, selectedItemClone);
       setTimeout(function () {
-        // timeout to wait for the DOM to update
         searchByFilters(selectedFilters);
       }, 100);
     }
   }
+  // Appel de la fonction pour mettre à jour le visuel des éléments sélectionnés
   updateSelectedVisuals();
 };
 
-/**
- * Updates the selected visuals by removing any items that are not included in the selected filters.
- *
- * @param {none} - This function does not take any parameters.
- * @return {none} - This function does not return any value.
- */
+/* Fonction de mise à jour des items selectionnés */
 function updateSelectedVisuals() {
   console.log("updateSelectedVisuals");
   const containers = [
@@ -74,6 +61,7 @@ function updateSelectedVisuals() {
   });
 }
 
+/* Fonction permettant d'ajuster le visuel lors de la sélection des éléments dans les filtres */
 export const updateSelectedItemLayout = (selectedElement) => {
   console.log("updateSelectedItemLayout");
   const filterValue = selectedElement.textContent.trim().toLowerCase();
@@ -117,7 +105,7 @@ export const updateSelectedItemLayout = (selectedElement) => {
     }
   }
 };
-
+/* Fonction de suppression des items sélectionnés */
 const removeSelectedItem = (selectedElement, selectedItemClone) => {
   const filterValue = selectedElement.textContent.trim().toLowerCase();
   const index = selectedFilters.indexOf(filterValue);
@@ -139,6 +127,7 @@ const removeSelectedItem = (selectedElement, selectedItemClone) => {
   }
 };
 
+/* Fonction de reset lorsque plus aucun élément n'est sélectionné */
 export const resetPageState = () => {
   console.log("resetPageState");
   updateDropdownOptions(1, allIngredients, "ingredient");

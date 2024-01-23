@@ -1,8 +1,9 @@
-import { recipes } from "../recipes.js";
+import { recipes } from "../../data/recipes.js";
 import { selectItem } from "../Logics/selectedFilters.js";
 
 let results = [];
 
+// Recherche de départ où l'on sélectionne toutes les recettes
 export const allAppliances = recipes.reduce((appliances, recipe) => {
   if (!appliances.includes(recipe.appliance.toLowerCase())) {
     appliances.push(recipe.appliance.toLowerCase());
@@ -10,6 +11,7 @@ export const allAppliances = recipes.reduce((appliances, recipe) => {
   return appliances;
 }, []);
 
+// Fonction qui réduit la liste des filtres et ressort un tableau des filtres uniques
 export const getUniqueAppliances = (results) => {
   const uniqueAppliances = results.reduce((appliances, recipe) => {
     if (!appliances.includes(recipe.appliance.toLowerCase())) {

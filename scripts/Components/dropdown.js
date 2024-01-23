@@ -8,6 +8,7 @@ const dropdownArrow1 = document.getElementById("dropdownArrow1");
 const dropdownArrow2 = document.getElementById("dropdownArrow2");
 const dropdownArrow3 = document.getElementById("dropdownArrow3");
 
+/* Listener pour ouvrir les dropdowns */
 visiblePart1.addEventListener("click", function () {
   dropdownArrow1.classList.toggle("rotate180");
   dropdown1.classList.toggle("open");
@@ -23,6 +24,7 @@ visiblePart3.addEventListener("click", function () {
   dropdown3.classList.toggle("open");
 });
 
+/* Filtrage en temps réel des dropdowns */
 // Dropdown 1
 const dd1Input = document.getElementById("dd1-input");
 
